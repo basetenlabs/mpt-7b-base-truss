@@ -7,8 +7,8 @@ class Model:
     def __init__(self, **kwargs) -> None:
 
         # Model name (uncomment/ comment for the different MPT flavors)
-        #self.model_name = 'mosaicml/mpt-7b'
-        model_name = 'mosaicml/mpt-7b-instruct'
+        self.model_name = 'mosaicml/mpt-7b'
+        #self.model_name = 'mosaicml/mpt-7b-instruct'
         #self.model_name = 'mosaicml/mpt-7b-storywriter'
         #self.model_name = 'mosaicml/mpt-7b-chat'
 
@@ -29,7 +29,7 @@ class Model:
 
         # Model
         self.model = AutoModelForCausalLM.from_pretrained(
-            model_name,
+            self.model_name,
             #config=config,
             trust_remote_code=True,
             torch_dtype=torch.bfloat16
