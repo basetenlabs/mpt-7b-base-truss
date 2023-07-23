@@ -5,12 +5,20 @@ import torch
 
 class Model:
     def __init__(self, **kwargs) -> None:
+        self._data_dir = kwargs["data_dir"]
+        self._config = kwargs["config"]
+        self._secrets = kwargs["secrets"]
+        self.tokenizer = None
+        self.model = None
 
+    def load(self):
         # Model name (uncomment/ comment for the different MPT flavors)
-        self.model_name = 'mosaicml/mpt-7b'
+        # self.model_name = 'mosaicml/mpt-7b'
         #self.model_name = 'mosaicml/mpt-7b-instruct'
         #self.model_name = 'mosaicml/mpt-7b-storywriter'
         #self.model_name = 'mosaicml/mpt-7b-chat'
+        self.model_name = 'my_model_repo/finetuned-mpt-7b'
+        
 
         # Device
         self.device='cuda:0'
@@ -32,7 +40,8 @@ class Model:
             self.model_name,
             #config=config,
             trust_remote_code=True,
-            torch_dtype=torch.bfloat16
+            torch_dtype=torch.bfloat16,
+             use_auth_token=self._secrets.get("hf_access_token", None)
         )
         self.model.to(device=self.device)
         self.model.eval()
