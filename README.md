@@ -57,7 +57,7 @@ import baseten
 model = baseten.deployed_model_version_id('YOUR_MODEL_ID')
 
 request = {
-    "prompt" : "Today I inspected the engine mounting equipment. I found a problem in one of the brackets so"
+    "prompt" : "Today I inspected the engine mounting equipment. I found a problem in one of the brackets so",
     "temperature": 0.75,
     "max_tokens": 200
 }
